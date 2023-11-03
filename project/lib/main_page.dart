@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: _center,
-            zoom: 11.0,
+            zoom: 20.0,
           ),
         ),
       ),
