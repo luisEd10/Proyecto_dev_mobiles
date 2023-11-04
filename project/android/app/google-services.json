@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "584380309787",
+    "project_id": "parking-iteso-proyecto",
+    "storage_bucket": "parking-iteso-proyecto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584380309787:android:d8ed77cb54da18c6c4b3be",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584380309787-8gmgioqhdl59gtsmhphepmrddepefko7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "25f4bbba26da63041a6acfa7b53f9d10b48513ba"
+          }
+        },
+        {
+          "client_id": "584380309787-9jcib6qr864su6n62lnpc5e01772bs2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_sqye9ajOhW9_u-2W0OpHjijzx9I1CnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584380309787-9jcib6qr864su6n62lnpc5e01772bs2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
