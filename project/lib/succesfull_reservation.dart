@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SuccesfullReservation extends StatelessWidget {
-  const SuccesfullReservation({super.key});
+  SuccesfullReservation({super.key});
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[300],
       appBar: AppBar(
         title: Text('reservation'),
       ),
@@ -14,8 +18,9 @@ class SuccesfullReservation extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Text("Congratulations you have booked parking spot", style: TextStyle(fontSize: 50, color:Colors.blue.shade400),)
+            SizedBox(
+              height: 420,
+              child: Text("Congratulations you have booked parking spot", style: TextStyle(fontSize: 50, foreground: Paint()..shader = linearGradient),)
             ),
             SizedBox(
               width: 350,
@@ -27,6 +32,9 @@ class SuccesfullReservation extends StatelessWidget {
               ),
             ),
             SizedBox(
+              height: 5,
+            ),
+            SizedBox(
               width: 350,
               child: MaterialButton(
                 onPressed: (){},
@@ -34,6 +42,9 @@ class SuccesfullReservation extends StatelessWidget {
                 color: Colors.indigo[100],
                 child: Text("Set a reminder with Google Reminders"),
               ),
+            ),
+            SizedBox(
+              height: 5,
             ),
             SizedBox(
               width: 350,
