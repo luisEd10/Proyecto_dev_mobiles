@@ -13,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifyAuthEvent>(_authVerfication);
     on<GoogleAuthEvent>(_authUser);
     on<SignOutEvent>(_signOut);
+    on<EmailAuthEvent>(_authUserWithEmail);
   }
 
   FutureOr<void> _authVerfication(event, emit) {
@@ -28,12 +29,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _signOut(event, emit) async {
     //Deslogear usuario
     if(FirebaseAuth.instance.currentUser!.isAnonymous){
-      await _authRepo.signOutFirebaseUser();
-    }else{
-      await _authRepo.signInWithGoogle();
+      print(FirebaseAuth.instance.currentUser);
       await _authRepo.signOutFirebaseUser();
     }
-
     emit(SignOutSuccessState());
   }
 
@@ -41,6 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthAwaitingState());
     try {
       //Logear usuario
+      
      await _authRepo.signInWithGoogle;
       emit(AuthSuccessState());
     } catch (e) {
@@ -48,4 +47,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthErrorState());
     }
   }
+
+  FutureOr<void> _authUserWithEmail(event, emit) async {
+    emit(AuthAwaitingState());
+    try {
+      print('test');
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: event.email,
+        password: event.password,
+      );
+      emit(AuthSuccessState());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        emit(AuthErrorState()); // Emitir un estado de error en caso de contraseña incorrecta
+      }
+    } catch (e) {
+      // Puedes agregar un rethrow para propagar la excepción o manejarla de otra manera
+      print('Error: $e');
+      emit(AuthErrorState()); // Emitir un estado de error en caso de cualquier otra excepción
+    }
+  }
+
 }
