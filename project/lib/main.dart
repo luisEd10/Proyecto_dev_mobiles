@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is AuthSuccessState) {
-            print("YA ESTA LOGEADO");
+            //print("YA ESTA LOGEADO");
             return MainPage();
           } else if (state is UnAuthState ||
               state is AuthErrorState ||

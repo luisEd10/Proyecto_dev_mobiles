@@ -76,8 +76,8 @@ class _MainPageState extends State<MainPage> {
         icon: customMarker,
         infoWindow: InfoWindow(
           // Usa el widget personalizado como contenido de la ventana de información
-          title: 'Marcador con ventana personalizada',
-          snippet: 'Presiona el botón',
+          title: 'WS - 093',
+          snippet: 'Presiona para reservar',
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ReservationDetail()));
           },
