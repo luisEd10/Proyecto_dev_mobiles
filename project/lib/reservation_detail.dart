@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/main_page.dart';
 import 'package:project/succesfull_reservation.dart';
 
 class ReservationDetail extends StatelessWidget {
