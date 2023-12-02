@@ -11,7 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   UserAuthRepository _authRepo = UserAuthRepository();
   AuthBloc() : super(AuthInitial()) {
     on<VerifyAuthEvent>(_authVerfication);
-    on<GoogleAuthEvent>(_authUser);
+    on<RegisterAuthEvent>(_register);
     on<SignOutEvent>(_signOut);
     on<EmailAuthEvent>(_authUserWithEmail);
   }
@@ -35,18 +35,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(SignOutSuccessState());
   }
 
-  FutureOr<void> _authUser(event, emit) async {
+  FutureOr<void> _register(event, emit) async {
     emit(AuthAwaitingState());
     try {
-      //Logear usuario
-      
-     await _authRepo.signInWithGoogle;
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: event.email,
+        password: event.password,
+      );
       emit(AuthSuccessState());
+       // Reemplaza la página actual con la MainPage
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
     } catch (e) {
-      print("Error al autenticar: $e");
       emit(AuthErrorState());
-    }
   }
+}
 
   FutureOr<void> _authUserWithEmail(event, emit) async {
     emit(AuthAwaitingState());
@@ -58,12 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       emit(AuthSuccessState());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-        emit(AuthErrorState()); // Emitir un estado de error en caso de contraseña incorrecta
-      }
+      emit(AuthErrorState());
     } catch (e) {
       // Puedes agregar un rethrow para propagar la excepción o manejarla de otra manera
       print('Error: $e');

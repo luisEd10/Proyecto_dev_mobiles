@@ -9,7 +9,19 @@ sealed class AuthEvent extends Equatable {
 
 class VerifyAuthEvent extends AuthEvent {}
 
-class GoogleAuthEvent extends AuthEvent {}
+class RegisterAuthEvent extends AuthEvent {
+  final String email;
+  final String password;
+
+  RegisterAuthEvent({
+    required this.email,
+    required this.password,
+  });
+
+  @override
+  List<Object> get props => [email, password];
+}
+
 
 class EmailAuthEvent extends AuthEvent {
   final String email;

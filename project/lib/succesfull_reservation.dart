@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/main_page.dart';
 
 class SuccesfullReservation extends StatelessWidget {
   SuccesfullReservation({super.key});
@@ -27,8 +28,11 @@ class SuccesfullReservation extends StatelessWidget {
               child: MaterialButton(
                 color: Colors.blue,
                 height: 70,
-                onPressed: (){},
-                child: Text("Use Google Maps to go to your parking spot"),
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainPage()));
+                },
+                //child: Text("Use Google Maps to go to your parking spot"),
+                child: Text("Back to home page"),
               ),
             ),
             SizedBox(

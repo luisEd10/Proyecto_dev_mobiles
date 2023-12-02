@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/main_page.dart';
 import 'package:project/succesfull_reservation.dart';
 
 class ReservationDetail extends StatelessWidget {
@@ -80,7 +81,9 @@ WS - 096 : State: Available, Last Updated : 4hr ago
             SizedBox(
               width: 350,
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 height: 70,
                 color: Colors.red,
                 child: Text("Cancel",
